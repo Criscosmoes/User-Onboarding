@@ -6,10 +6,17 @@ const StyledMembers = styled.div`
 
 & {
     display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    margin: 2%; 
+}
+
+.list {
+    display: flex; 
     justify-content: space-around; 
     align-items: center; 
     flex-wrap: wrap; 
-    height: 40vh; 
 }
 
 
@@ -18,10 +25,14 @@ h2 {
     margin: 2%; 
 }
 
-div {
+.user {
     border: 2px solid black; 
+    margin: 2%; 
 }
 
+div {
+    font-size: 4rem; 
+}
 
 `
 
@@ -31,7 +42,7 @@ const Members = ({users}) => {
 
     const renderedList = users.map(cur => {
         return (
-            <div>
+            <div className="user">
                 <h2>{cur.name}</h2>
                 <h2>{cur.email}</h2>
             </div>
@@ -41,7 +52,10 @@ const Members = ({users}) => {
 
     return (
         <StyledMembers>
-            {renderedList}
+            <div>List of Users</div>
+            <div className="list">
+                {renderedList}
+            </div>
         </StyledMembers>
     )
 }
