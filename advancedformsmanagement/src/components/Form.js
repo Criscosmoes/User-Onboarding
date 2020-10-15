@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const StyledForm = styled.div`
 
 & {
+    margin: 2%; 
 }
 
 form {
@@ -18,7 +19,7 @@ form {
 
 label {
     text-align: center; 
-    margin: 3%; 
+    margin: 1.5%; 
     width: 15%; 
 }
 
@@ -37,11 +38,16 @@ button {
     background: lightgreen; 
 }
 
+p {
+    font-size: 1.6rem; 
+    color: red; 
+    margin-top: 2%; 
+}
 
 `
 
 
-const Form = ({onInputChange, values, onFormSubmit}) => {
+const Form = ({onInputChange, values, onFormSubmit, errors, buttonDisabled}) => {
 
 
     return (
@@ -49,25 +55,29 @@ const Form = ({onInputChange, values, onFormSubmit}) => {
             <form onSubmit={onFormSubmit}>
                 <label>
                     Name
-                    <input type="text" name="name" value={values.name} onChange={onInputChange} /> 
+                    <input type="text" name="name" value={values.name} onChange={onInputChange} />
+                    {errors.name.length !== 0 && <p>{errors.name}</p>} 
                 </label>
 
                 <label>
                     Email
                     <input type="text" name="email" value={values.email} onChange={onInputChange} /> 
+                    {errors.email.length !== 0 && <p>{errors.email}</p>}
                 </label>
 
                 <label>
                     Password
-                    <input type="password" name="password" value={values.password} onChange={onInputChange} /> 
+                    <input type="text" name="password" value={values.password} onChange={onInputChange} /> 
+                    {errors.password.length !== 0 && <p>{errors.password}</p>}
                 </label>
 
                 <label className="check">
                     Terms of Service
-                    <input type="checkbox" name="terms" onChange={onInputChange} /> 
+                    <input type="checkbox" name="terms" onChange={onInputChange} checked={values.terms} /> 
+                    {errors.password.length !== 0 && <p>{errors.terms}</p>}
                 </label>
 
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={buttonDisabled}>Submit</button>
 
             </form>
         </StyledForm>
